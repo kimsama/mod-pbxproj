@@ -638,7 +638,6 @@ class XcodeProject(PBXDict):
         l = self.get_files_by_name(name, parent)
         id = None                                                         
         for k in self.objects.keys():                                                  
-            #print self.objects[k]
             if len(l) > 0:
                 if self.objects[k] == l[0]: 
                     id = k                
