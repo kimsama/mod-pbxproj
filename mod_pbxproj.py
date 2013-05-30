@@ -626,13 +626,27 @@ class XcodeProject(PBXDict):
     def get_files_by_name(self, name, parent=None):
         if parent:
             files = [f for f in self.objects.values() if f.get('isa') == 'PBXFileReference'
-                                                         and f.get(name) == name
+                                                         and f.get('name') == name
                                                          and parent.has_child(f)]
         else:
             files = [f for f in self.objects.values() if f.get('isa') == 'PBXFileReference'
-                                                         and f.get(name) == name]
+                                                         and f.get('name') == name]
 
         return files
+
+    def get_file_id_by_name(self, name, parent=None):
+        l = self.get_files_by_name(name, parent)
+        print 'found list'
+        print l                                                         
+        print len(l)
+        id = None                                                         
+        for k in self.objects.keys():                                                  
+            #print self.objects[k]
+            if len(l) > 0:
+                if self.objects[k] == l[0]: 
+                    id = k                
+
+        return id       
 
     def get_build_files(self, id):
         files = [f for f in self.objects.values() if f.get('isa') == 'PBXBuildFile'
