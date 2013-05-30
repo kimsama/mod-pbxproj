@@ -636,9 +636,6 @@ class XcodeProject(PBXDict):
 
     def get_file_id_by_name(self, name, parent=None):
         l = self.get_files_by_name(name, parent)
-        print 'found list'
-        print l                                                         
-        print len(l)
         id = None                                                         
         for k in self.objects.keys():                                                  
             #print self.objects[k]
